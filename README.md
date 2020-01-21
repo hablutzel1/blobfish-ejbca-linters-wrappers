@@ -106,3 +106,9 @@ $ cd /opt/misc/linters/x509lint_rwbaumg
 - Get sure that linters definitions are updated automatically and make sure too that wrappers would fail if the update doesn't succeed completely, e.g. failing to update restricted/special domains like example.org. Linters should be automatically updated to their latest versions and they should stop working if the update fails or is left in an inconsistent state. Maybe for this we should perform a final "git status" after the update or check the output of "git pull". Additionally maybe linters could be automatically tested during updates with a fixed test certificate for some expected output.
 - Check if there are any official EJBCA linters wrappers, I think I saw something on this.
 - Maybe create a base wrapper script for all three linters, e.g. by receiving the full linter command and expected output as arguments.
+- Determine if the folder /opt/misc/linters/ is the most appropriate one for keeping all of this. See at the EJBCA Cloud for reference.
+- Evaluate to install all linters under /usr/local/bin as recommended in https://bbs.archlinux.org/viewtopic.php?pid=1852209#p1852209.
+- Work seriously on making the wrappers robust: Check the exit status for each linter when the input certificate is in a wrong format (e.g. PEM when expecting DER) or when the file can't be read.
+- Study the best possible permissions to apply in /opt/misc/linters/wrappers.
+- Allow wrappers to be configured for a set of given severities to fail for, e.g. only on error or fatal, or fail even for warning. The previous could be done with parameters.
+- Test to configure an EJBCA validator to not fail on linter warnings, but just to log the event (maybe with an audit log entry?).
