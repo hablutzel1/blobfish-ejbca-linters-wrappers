@@ -102,6 +102,33 @@ $ cd /opt/misc/linters/x509lint_rwbaumg
 * **Validator Type**: External Command Certificate Validator
 * **Full pathname of script**: `/opt/misc/linters/wrappers/x509lintw.sh`
 
+## ZLint
+
+### Installation
+
+First, install Go. Always use the latest version available from https://golang.org/dl/.
+
+```
+$ wget -P ~/software/ https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
+-- TODO verify fingerprint in the Go recommended way (if any).
+# tar -C /usr/local -xzf ~/software/go$VERSION.$OS-$ARCH.tar.gz
+```
+
+The install ZLint:
+
+```
+-- TODO make it a verbose operation
+# GOPATH=/opt/misc/linters/zlint_go /usr/local/go/bin/go get github.com/zmap/zlint/cmd/zlint
+```
+
+### EJBCA Validator
+
+* TODO check: It seems a bug in EJBCA to expect the %cert% argument in the command here... when it has been observed that this produces that the cert is /being sent to the STDIN instead of being sent as a regular parameter.
+
+* **Name**: ZLint
+* **Validator Type**: External Command Certificate Validator
+* **Full pathname of script**: `/opt/misc/linters/wrappers/zlintw.sh %cert%`
+
 # TODOS #
 - Get sure that linters definitions are updated automatically and make sure too that wrappers would fail if the update doesn't succeed completely, e.g. failing to update restricted/special domains like example.org. Linters should be automatically updated to their latest versions and they should stop working if the update fails or is left in an inconsistent state. Maybe for this we should perform a final "git status" after the update or check the output of "git pull". Additionally maybe linters could be automatically tested during updates with a fixed test certificate for some expected output.
 - Check if there are any official EJBCA linters wrappers, I think I saw something on this.
