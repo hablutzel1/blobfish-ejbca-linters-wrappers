@@ -79,11 +79,28 @@ $ make
 
 ### EJBCA Validator
 
-- **Name**: CA/B Forum lint
-- **Validator Type**: External Command Certificate Validator
-- **Full pathname of script**: `/opt/misc/linters/wrappers/cablintw.sh`
+* **Name**: CA/B Forum lint
+* **Validator Type**: External Command Certificate Validator
+* **Full pathname of script**: `/opt/misc/linters/wrappers/cablintw.sh`
 
+## X.509 lint
 
+### Installation
+
+```
+-- TODO try to get the latest changes from the official x509lint too. First check if these rwbaumg changes had already get to the official repo anyway, otherwise, maybe cherry pick the commits of interest in rwbaumg over the official repo.
+# git clone https://github.com/rwbaumg/x509lint.git /opt/misc/linters/x509lint_rwbaumg
+$ cd /opt/misc/linters/x509lint_rwbaumg
+# git fetch --all
+# git checkout -t origin/x19e-master
+# make
+```
+
+### EJBCA Validator
+
+* **Name**: X.509 lint
+* **Validator Type**: External Command Certificate Validator
+* **Full pathname of script**: `/opt/misc/linters/wrappers/x509lintw.sh`
 
 # TODOS #
 - Get sure that linters definitions are updated automatically and make sure too that wrappers would fail if the update doesn't succeed completely, e.g. failing to update restricted/special domains like example.org. Linters should be automatically updated to their latest versions and they should stop working if the update fails or is left in an inconsistent state. Maybe for this we should perform a final "git status" after the update or check the output of "git pull". Additionally maybe linters could be automatically tested during updates with a fixed test certificate for some expected output.
