@@ -12,7 +12,7 @@
 # End of Cygwin tests
 
 OUTPUT=$(/opt/misc/linters/zlint_go/bin/zlint -pretty <&0 | grep -1 '"warn"\|"error"\|"fatal"')
-if [ $? -eq 0 ]; then
+if [ $? -eq 0 ] || [ $? -eq 1 ]; then
   if [ -z "$OUTPUT" ]; then
     echo "No error in zlint"
     exit 0

@@ -7,7 +7,7 @@
 tmpfile=$(mktemp /tmp/abc-script.XXXXXX)
 openssl x509 -inform DER -in $1 -outform PEM -out $tmpfile
 OUTPUT=$(/opt/misc/linters/x509lint_rwbaumg/x509lint-sub $tmpfile | grep -5 '^[WE]: ')
-if [ $? -eq 0 ]; then
+if [ $? -eq 0 ] || [ $? -eq 1 ]; then
   rm $tmpfile
   if [ -z "$OUTPUT" ]; then
     echo "No error in x509lint"
