@@ -141,3 +141,4 @@ The install ZLint:
 - Study the best possible permissions to apply in /opt/misc/linters/wrappers.
 - Allow wrappers to be configured for a set of given severities to fail for, e.g. only on error or fatal, or fail even for warning. The previous could be done with parameters.
 - Test to configure an EJBCA validator to not fail on linter warnings, but just to log the event (maybe with an audit log entry?).
+- Study https://github.com/rwbaumg/pki-lint and evaluate to migrate to it as it seems to be a wrapper for multiple third party linters.
