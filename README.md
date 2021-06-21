@@ -61,6 +61,8 @@ $ gem install public_suffix
 
 Then:
 
+* TODO update to the use of https://github.com/certlint/certlint as the AWS version has been archived. Look too for the official AWS archiving announcement.
+
 ```
 # git clone https://github.com/awslabs/certlint.git /opt/misc/linters/certlint/
 ```
@@ -88,7 +90,7 @@ $ make
 ### Installation
 
 ```
--- TODO try to get the latest changes from the official x509lint too. First check if these rwbaumg changes had already get to the official repo anyway, otherwise, maybe cherry pick the commits of interest in rwbaumg over the official repo.
+-- TODO try to get the latest changes from the official https://github.com/kroeckx/x509lint. First check if the rwbaumg changes had already got to the official repo anyway, otherwise, maybe cherry pick the commits of interest in rwbaumg over the official repo.
 # git clone https://github.com/rwbaumg/x509lint.git /opt/misc/linters/x509lint_rwbaumg
 $ cd /opt/misc/linters/x509lint_rwbaumg
 # git fetch --all
