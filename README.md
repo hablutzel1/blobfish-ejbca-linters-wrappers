@@ -128,6 +128,7 @@ The install ZLint:
 * **Full pathname of script**: `/opt/misc/linters/wrappers/zlintw.sh %cert%`
 
 # TODOS #
+- Instead of maintaining these wrappers and sort out the process to keep the linters updated, evaluate to simply use an external service. See  https://groups.google.com/g/mozilla.dev.security.policy/c/oTQ9OYgS8D4. Note that it even seems that the associated source code is open source, e.g. https://github.com/crtsh/certwatch_db/blob/master/linting/lint_certificate.fnc.
 - Get sure that linters definitions are updated automatically and make sure too that wrappers would fail if the update doesn't succeed completely, e.g. failing to update restricted/special domains like example.org. Linters should be automatically updated to their latest versions and they should stop working if the update fails or is left in an inconsistent state. Maybe for this we should perform a final "git status" after the update or check the output of "git pull". Additionally maybe linters could be automatically tested during updates with some fixed test certificates for some expected output.
 - Check if there are any official EJBCA linters wrappers, I think I saw something on this.
 - Maybe create a base wrapper script for all three linters, e.g. by receiving the full linter command and expected output as arguments.
