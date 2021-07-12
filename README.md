@@ -51,6 +51,7 @@ source /etc/profile.d/rvm.sh
 Then:
 
 * TODO Confirm if the following "–default" will really apply globally in this system.
+* TODO confirm if a newer Ruby could be used.
 
 ```
 $ rvm install ruby-2.6.0
