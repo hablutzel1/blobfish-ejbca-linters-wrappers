@@ -70,7 +70,7 @@ Then:
 
 ```
 -- TODO try to avoid the need to do this and allow the user to execute 'ruby extconf.rb' with sudo.
-# chown -R $USER /opt/misc/linters/certlint/
+$ sudo chown -R $USER /opt/misc/linters/certlint/
 $ cd /opt/misc/linters/certlint/ext
 $ ruby extconf.rb
 $ make
@@ -108,9 +108,11 @@ $ cd /opt/misc/linters/x509lint
 First, install Go. Always use the latest version available from https://golang.org/dl/.
 
 ```
-$ wget -P ~/software/ https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
+# rm -Rf /usr/local/go
+-- TODO check: what is doing the -P here?.
+$ wget -P ~/ https://golang.org/dl/go1.17.1.linux-amd64.tar.gz
 -- TODO verify fingerprint in the Go recommended way (if any).
-# tar -C /usr/local -xzf ~/software/go$VERSION.$OS-$ARCH.tar.gz
+# tar -C /usr/local -xzf ~/go1.17.1.linux-amd64.tar.gz
 ```
 
 The install ZLint:
