@@ -105,21 +105,20 @@ $ cd /opt/misc/linters/x509lint
 
 ### Installation
 
-First, install Go. Always use the latest version available from https://golang.org/dl/.
+* NOTE that this is in the process of being automated with Ansible in wisekey-automation/linter_install_zlint.yml.
+
+First, install Go >=1.12
 
 ```
-# rm -Rf /usr/local/go
--- TODO check: what is doing the -P here?.
-$ wget -P ~/ https://golang.org/dl/go1.17.1.linux-amd64.tar.gz
--- TODO verify fingerprint in the Go recommended way (if any).
-# tar -C /usr/local -xzf ~/go1.17.1.linux-amd64.tar.gz
+$ apt-cache madison golang | grep 'Packages$'
+# apt install golang
 ```
 
-The install ZLint:
+Then install ZLint:
 
 ```
 -- TODO make it a verbose operation
-# GOPATH=/opt/misc/linters/zlint_go /usr/local/go/bin/go get github.com/zmap/zlint/v3/cmd/zlint
+# GOPATH=/opt/misc/linters/zlint_go go get github.com/zmap/zlint/v3/cmd/zlint
 ```
 
 ### EJBCA Validator
