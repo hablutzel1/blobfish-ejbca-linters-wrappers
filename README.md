@@ -16,7 +16,7 @@ Then configure each one of the validators as explained below.
 
 ### Installation
 
-*All system users that intend to use this linters will require to be added to the rvm group as indicated below.*
+*All system users that intend to use this linter will require to be added to the rvm group as indicated below.*
 
 First, a global RVM installation has to be completed like this:
 
@@ -88,6 +88,8 @@ $ make
 
 ### Installation
 
+* NOTE that this is in the process of being automated with Ansible in linter_install_x509lint.yml.
+
 ```
 -- TODO check if there is still anything useful in https://github.com/rwbaumg/x509lint.git.
 # git clone https://github.com/kroeckx/x509lint /opt/misc/linters/x509lint
@@ -105,7 +107,7 @@ $ cd /opt/misc/linters/x509lint
 
 ### Installation
 
-* NOTE that this is in the process of being automated with Ansible in wisekey-automation/linter_install_zlint.yml.
+* NOTE that this is in the process of being automated with Ansible in linter_install_zlint.yml.
 
 First, install Go >=1.12
 
