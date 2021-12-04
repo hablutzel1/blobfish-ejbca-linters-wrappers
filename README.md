@@ -5,8 +5,8 @@ First, activate "Enable External Script Access" in EJBCA "System Configuration >
 Then get the linters wrappers scripts:
 
 ```
-# mkdir -p /opt/misc/linters/
-# git clone https://github.com/hablutzel1/blobfish-ejbca-linters-wrappers.git /opt/misc/linters/wrappers/
+sudo mkdir -p /opt/misc/linters/
+sudo git clone https://github.com/hablutzel1/blobfish-ejbca-linters-wrappers.git /opt/misc/linters/wrappers/
 ```
 Then configure each one of the validators as explained below.
 
@@ -16,67 +16,27 @@ Then configure each one of the validators as explained below.
 
 ### Installation
 
-*All system users that intend to use this linter will require to be added to the rvm group as indicated below.*
-
-First, a global RVM installation has to be completed like this:
+* NOTE that this is in the process of being automated with Ansible in linter_install_certlint.yml.
 
 ```
-$ command curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -
-$ command curl -sSL https://rvm.io/pkuczynski.asc | sudo gpg --import -
-$ curl -L https://get.rvm.io | sudo bash -s stable
-```
-
-Then, current user will be added to `rvm` group:
-
-```
-# usermod -a -G rvm $USER
-```
-
-And `wildfly` user will be added to that group too:
-
-```
-# usermod -a -G rvm wildfly
-```
-
-Now it is required to modify the following file, `/opt/wildfly/bin/standalone.sh` like this at the top:
-
-* FIXME: try not to do this as this will complicate WildFly maintenance. Look if standalone.sh has any method to source custom files and then probably copy from rvm.sh the minimum required to configure the RVM environment.
-
-```
-#!/bin/bash
-source /etc/profile.d/rvm.sh
-...
-```
-
-Then:
-
-* TODO Confirm if the following "–default" will really apply globally in this system.
-* TODO confirm if a newer Ruby could be used.
-
-```
-$ rvm install ruby-2.6.0
-$ rvm use ruby-2.6.0 --default
-$ gem install simpleidn
-$ gem install public_suffix
+sudo apt-get install ruby ruby-dev build-essential git  
+sudo gem install simpleidn
+sudo gem install public_suffix
 ```
 
 Then:
 
 ```
-# git clone https://github.com/certlint/certlint.git /opt/misc/linters/certlint/
+sudo git clone https://github.com/certlint/certlint.git /opt/misc/linters/certlint/
 ```
 
 Then:
 
 ```
--- TODO try to avoid the need to do this and allow the user to execute 'ruby extconf.rb' with sudo.
-$ sudo chown -R $USER /opt/misc/linters/certlint/
-$ cd /opt/misc/linters/certlint/ext
-$ ruby extconf.rb
-$ make
+cd /opt/misc/linters/certlint/ext
+sudo ruby extconf.rb
+sudo make
 ```
-
-* TODO confirm if it is required to restart OS or suffices with restarting wildfly service for applying RVM environment changes.
 
 ### EJBCA Validator
 
@@ -91,10 +51,10 @@ $ make
 * NOTE that this is in the process of being automated with Ansible in linter_install_x509lint.yml.
 
 ```
--- TODO check if there is still anything useful in https://github.com/rwbaumg/x509lint.git.
-# git clone https://github.com/kroeckx/x509lint /opt/misc/linters/x509lint
-$ cd /opt/misc/linters/x509lint
-# make
+# TODO check if there is still anything useful in https://github.com/rwbaumg/x509lint.git.
+sudo git clone https://github.com/kroeckx/x509lint /opt/misc/linters/x509lint
+cd /opt/misc/linters/x509lint
+sudo make
 ```
 
 ### EJBCA Validator
@@ -112,15 +72,15 @@ $ cd /opt/misc/linters/x509lint
 First, install Go >=1.12
 
 ```
-$ apt-cache madison golang | grep 'Packages$'
-# apt install golang
+apt-cache madison golang | grep 'Packages$'
+sudo apt install golang
 ```
 
 Then install ZLint:
 
 ```
--- TODO make it a verbose operation
-# GOPATH=/opt/misc/linters/zlint_go go get github.com/zmap/zlint/v3/cmd/zlint
+# TODO make it a verbose operation
+sudo GOPATH=/opt/misc/linters/zlint_go go get github.com/zmap/zlint/v3/cmd/zlint
 ```
 
 ### EJBCA Validator
