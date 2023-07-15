@@ -16,7 +16,7 @@ Then configure each one of the validators as explained below.
 
 ### Installation
 
-* NOTE that this is in the process of being automated with Ansible in linter_install_certlint.yml.
+* NOTE that this is in the process of being automated with Ansible in https://bitbucket.org/blobfisheirl/blobfish-recommended-server-base-configuration-deprecated/src/master/linter_certlint.yml.
 
 ```
 sudo apt-get install ruby ruby-dev build-essential git  
@@ -48,7 +48,7 @@ sudo make
 
 ### Installation
 
-* NOTE that this is in the process of being automated with Ansible in linter_install_x509lint.yml.
+* NOTE that this is in the process of being automated with Ansible in https://bitbucket.org/blobfisheirl/blobfish-recommended-server-base-configuration-deprecated/src/master/linter_x509lint.yml.
 
 ```
 # TODO check if there is still anything useful in https://github.com/rwbaumg/x509lint.git.
@@ -67,7 +67,7 @@ sudo make
 
 ### Installation
 
-* NOTE that this is in the process of being automated with Ansible in linter_install_zlint.yml.
+* NOTE that this is in the process of being automated with Ansible in https://bitbucket.org/blobfisheirl/blobfish-recommended-server-base-configuration-deprecated/src/master/linter_zlint.yml.
 
 First, install Go >=1.12
 
