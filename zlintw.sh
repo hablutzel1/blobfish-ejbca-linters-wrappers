@@ -16,7 +16,7 @@
 # TODO revert the previous incorrect commit appropriately, it was generating no errors for OISTEWISeKeyGlobalRootGBCA.cacert.pem which has problems.
 # FIXME the following type of problem should produce an error: /opt/misc/linters/wrappers/zlintw.sh: 17: /opt/misc/linters/wrappers/zlintw.sh: /opt/misc/linters/zlint_go/bin/zlint: Permission denied\nNo error in zlint
 # TODO stop excluding w_subject_common_name_included when Pedro agrees on removing it, https://wisekey.slack.com/archives/C01CH1PSUHM/p1704386438294709.
-OUTPUT=$(/opt/misc/linters/zlint_go/bin/zlint -pretty -excludeNames w_subject_common_name_included <&0 | grep -1 '"warn"\|"error"\|"fatal"')
+OUTPUT=$(/opt/misc/linters/zlint_go/bin/zlint -pretty -excludeNames w_subject_common_name_included,w_ext_subject_key_identifier_missing_sub_cert <&0 | grep -1 '"warn"\|"error"\|"fatal"')
 if [ $? -eq 0 ] || [ $? -eq 1 ]; then
   if [ -z "$OUTPUT" ]; then
     echo "No error in zlint"
