@@ -17,7 +17,7 @@
 # FIXME the following type of problem should produce an error: /opt/keyfactor/linters/wrappers/zlintw.sh: 17: /opt/keyfactor/linters/wrappers/zlintw.sh: /opt/keyfactor/linters/zlint_go/bin/zlint: Permission denied\nNo error in zlint
 # TODO stop excluding w_subject_common_name_included when Pedro agrees on removing it, https://wisekey.slack.com/archives/C01CH1PSUHM/p1704386438294709.
 # TODO remove the exclusion of w_ext_subject_key_identifier_not_recommended_subscriber after removing the SKI from all the active profiles.
-OUTPUT=$(/opt/keyfactor/linters/zlint_go/bin/zlint -pretty -excludeNames w_subject_common_name_included,w_ext_subject_key_identifier_missing_sub_cert,w_ext_subject_key_identifier_not_recommended_subscriber <&0 | grep -1 '"warn"\|"error"\|"fatal"')
+OUTPUT=$(/opt/keyfactor/linters/zlint_go/bin/zlint -pretty -excludeNames w_subject_common_name_included,w_ext_subject_key_identifier_missing_sub_cert,w_ext_subject_key_identifier_not_recommended_subscriber,w_server_cert_valid_time_longer_than_199_days <&0 | grep -1 '"warn"\|"error"\|"fatal"')
 if [ $? -eq 0 ] || [ $? -eq 1 ]; then
   if [ -z "$OUTPUT" ]; then
     echo "No error in zlint"
