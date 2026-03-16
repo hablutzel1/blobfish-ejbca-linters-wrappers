@@ -14,10 +14,10 @@
 # TODO try to simplify it more, we might even stop requiring to use the current wrapper.
 # TODO get sure that an error like the following still will produce error: "FATA[0000] unable to parse certificate: x509: certificate name constraint contained IP address range of length 0" as this was the reason for the previous incorrect commit.
 # TODO revert the previous incorrect commit appropriately, it was generating no errors for OISTEWISeKeyGlobalRootGBCA.cacert.pem which has problems.
-# FIXME the following type of problem should produce an error: /opt/misc/linters/wrappers/zlintw.sh: 17: /opt/misc/linters/wrappers/zlintw.sh: /opt/misc/linters/zlint_go/bin/zlint: Permission denied\nNo error in zlint
+# FIXME the following type of problem should produce an error: /opt/keyfactor/linters/wrappers/zlintw.sh: 17: /opt/keyfactor/linters/wrappers/zlintw.sh: /opt/keyfactor/linters/zlint_go/bin/zlint: Permission denied\nNo error in zlint
 # TODO stop excluding w_subject_common_name_included when Pedro agrees on removing it, https://wisekey.slack.com/archives/C01CH1PSUHM/p1704386438294709.
 # TODO remove the exclusion of w_ext_subject_key_identifier_not_recommended_subscriber after removing the SKI from all the active profiles.
-OUTPUT=$(/opt/misc/linters/zlint_go/bin/zlint -pretty -excludeNames w_subject_common_name_included,w_ext_subject_key_identifier_missing_sub_cert,w_ext_subject_key_identifier_not_recommended_subscriber <&0 | grep -1 '"warn"\|"error"\|"fatal"')
+OUTPUT=$(/opt/keyfactor/linters/zlint_go/bin/zlint -pretty -excludeNames w_subject_common_name_included,w_ext_subject_key_identifier_missing_sub_cert,w_ext_subject_key_identifier_not_recommended_subscriber <&0 | grep -1 '"warn"\|"error"\|"fatal"')
 if [ $? -eq 0 ] || [ $? -eq 1 ]; then
   if [ -z "$OUTPUT" ]; then
     echo "No error in zlint"

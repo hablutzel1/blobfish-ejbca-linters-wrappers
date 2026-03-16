@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /opt/misc/linters/pkilint/venv/bin/activate
+source /opt/keyfactor/linters/pkilint/venv/bin/activate
 #source /Users/jhablutzel/Documents/certificate_linters/pkilint/venv/bin/activate
 
 # TODO try to enable at least the WARNING level.

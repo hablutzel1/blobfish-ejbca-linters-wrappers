@@ -5,8 +5,8 @@ First, activate "Enable External Script Access" in EJBCA "System Configuration >
 Then get the linters wrappers scripts:
 
 ```
-sudo mkdir -p /opt/misc/linters/
-sudo git clone https://github.com/hablutzel1/blobfish-ejbca-linters-wrappers.git /opt/misc/linters/wrappers/
+sudo mkdir -p /opt/keyfactor/linters/
+sudo git clone https://github.com/hablutzel1/blobfish-ejbca-linters-wrappers.git /opt/keyfactor/linters/wrappers/
 ```
 Then configure each one of the validators as explained below.
 
@@ -27,13 +27,13 @@ sudo gem install public_suffix
 Then:
 
 ```
-sudo git clone https://github.com/certlint/certlint.git /opt/misc/linters/certlint/
+sudo git clone https://github.com/certlint/certlint.git /opt/keyfactor/linters/certlint/
 ```
 
 Then:
 
 ```
-cd /opt/misc/linters/certlint/ext
+cd /opt/keyfactor/linters/certlint/ext
 sudo ruby extconf.rb
 sudo make
 ```
@@ -42,7 +42,7 @@ sudo make
 
 * **Name**: CA/B Forum lint
 * **Validator Type**: External Command Certificate Validator
-* **Full pathname of script**: `/opt/misc/linters/wrappers/cablintw.sh`
+* **Full pathname of script**: `/opt/keyfactor/linters/wrappers/cablintw.sh`
 
 ## X.509 lint
 
@@ -52,8 +52,8 @@ sudo make
 
 ```
 # TODO check if there is still anything useful in https://github.com/rwbaumg/x509lint.git.
-sudo git clone https://github.com/kroeckx/x509lint /opt/misc/linters/x509lint
-cd /opt/misc/linters/x509lint
+sudo git clone https://github.com/kroeckx/x509lint /opt/keyfactor/linters/x509lint
+cd /opt/keyfactor/linters/x509lint
 sudo make
 ```
 
@@ -61,7 +61,7 @@ sudo make
 
 * **Name**: X.509 lint
 * **Validator Type**: External Command Certificate Validator
-* **Full pathname of script**: `/opt/misc/linters/wrappers/x509lintw.sh`
+* **Full pathname of script**: `/opt/keyfactor/linters/wrappers/x509lintw.sh`
 
 ## ZLint
 
@@ -80,7 +80,7 @@ Then install ZLint:
 
 ```
 # TODO make it a verbose operation
-sudo GOPATH=/opt/misc/linters/zlint_go go get github.com/zmap/zlint/v3/cmd/zlint
+sudo GOPATH=/opt/keyfactor/linters/zlint_go go get github.com/zmap/zlint/v3/cmd/zlint
 ```
 
 ### EJBCA Validator
@@ -89,17 +89,17 @@ sudo GOPATH=/opt/misc/linters/zlint_go go get github.com/zmap/zlint/v3/cmd/zlint
 
 * **Name**: ZLint
 * **Validator Type**: External Command Certificate Validator
-* **Full pathname of script**: `/opt/misc/linters/wrappers/zlintw.sh %cert%`
+* **Full pathname of script**: `/opt/keyfactor/linters/wrappers/zlintw.sh %cert%`
 
 # TODOS #
 - Instead of maintaining these wrappers and sort out the process to keep the linters updated, evaluate to simply use an external service. See  https://groups.google.com/g/mozilla.dev.security.policy/c/oTQ9OYgS8D4. Note that it even seems that the associated source code is open source, e.g. https://github.com/crtsh/certwatch_db/blob/master/linting/lint_certificate.fnc.
 - Get sure that linters definitions are updated automatically and make sure too that wrappers would fail if the update doesn't succeed completely, e.g. failing to update restricted/special domains like example.org. Linters should be automatically updated to their latest versions and they should stop working if the update fails or is left in an inconsistent state. Maybe for this we should perform a final "git status" after the update or check the output of "git pull". Additionally maybe linters could be automatically tested during updates with some fixed test certificates for some expected output.
 - Check if there are any official EJBCA linters wrappers, I think I saw something on this.
 - Maybe create a base wrapper script for all three linters, e.g. by receiving the full linter command and expected output as arguments.
-- Determine if the folder /opt/misc/linters/ is the most appropriate one for keeping all of this. See at the EJBCA Cloud for reference.
+- Determine if the folder /opt/keyfactor/linters/ is the most appropriate one for keeping all of this. See at the EJBCA Cloud for reference.
 - Evaluate to install all linters under /usr/local/bin as recommended in https://bbs.archlinux.org/viewtopic.php?pid=1852209#p1852209.
 - Work seriously on making the wrappers robust: Check the exit status for each linter when the input certificate is in a wrong format (e.g. PEM when expecting DER) or when the file can't be read.
-- Study the best possible permissions to apply in /opt/misc/linters/wrappers.
+- Study the best possible permissions to apply in /opt/keyfactor/linters/wrappers.
 - Allow wrappers to be configured for a set of given severities to fail for, e.g. only on error or fatal, or fail even for warning. The previous could be done with parameters.
 - Test to configure an EJBCA validator to not fail on linter warnings, but just to log the event (maybe with an audit log entry?).
 - Study https://github.com/rwbaumg/pki-lint and evaluate to migrate to it as it might be a better maintained wrapper for multiple third party linters.
